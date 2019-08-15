@@ -1,0 +1,287 @@
+$type: card
+rules: []
+properties:
+  title:
+    type: element
+    xtype: at-carbon-card-title
+    title: title
+    xgridcols: 12
+    xstyle: 
+    xclass: 
+    actionListeners:
+      - _start
+    modelBind: label:title
+  view3:
+    type: element
+    title: Liquid View 3
+    xtype: at-core-view
+    actionListeners:
+      - _all
+    modelRoot: state.model
+    view: |-
+      {% unless showList == true %} 
+        <div class="layout-vertical layout-center-center">
+          {% if items.length > 0 %}
+            <div class="circle background-{{color | default:'blue'}}">
+              <div class="font-headline" style="text-align: center; height: 52px; line-height: 50px;">
+                {% if items.length > 99 %}
+                  99+
+                {% else %}
+                  {{items.length}}
+                {% endif %}
+              </div>
+            </div>
+            <div class="p font-headline grey">Recent Files</div>
+            <div class="pb ptsm">
+              <at-carbon-button class="background-{{color | default:'blue'}}" button-type="contained" button-color="{{color | default:'blue'}}" label="View" at-click-action="showList"></at-carbon-button>
+            </div>
+          {% endif %}
+          {% if items.length == 0 %}          
+            <div class="p layout-self-stretch font-title grey" style="text-align: center;">
+              No recent files
+            </div>
+          {% endif %}
+        </div>
+      {% endunless %}
+
+      <style>
+      .circle {
+        height: 52px;
+        width: 52px;
+        border-radius: 50%;
+      }
+      </style>
+    updateMode: 0
+  view7:
+    type: element
+    title: Liquid View 6
+    xtype: at-core-view
+    view: |-
+      {% if showList %}
+      {% for item in items | limit:6 %}
+      <div class="container action {% if forloop.index > 3 %}expanded-only{% endif %}" href="{{item.link}}" at-click-action="select" style="cursor:pointer;">
+      	<div class="container layout-horizontal layout-center background-white">
+      		<div class="container layout-center ml pl prsm pysm">
+      			{% if item.type == "PowerPoint" %}
+      				<iron-image src="{{ '/cloud-files/PowerPoint.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
+            {% elsif item.type == "Word" %}
+      				<iron-image src="{{ '/cloud-files/Word.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
+      			{% elsif item.type == "Excel" %}
+      				<iron-image src="{{ '/cloud-files/Excel.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
+      			{% elsif item.type == "Pdf" %}
+      				<iron-image src="{{ '/cloud-files/Pdf.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
+      			{% elsif item.type == "OneNote" or item.type == "OneNotePage" %}
+      				<iron-image src="{{ '/cloud-files/OneNote.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
+      			{% elsif item.type == "Archive" %}
+      				<iron-image src="{{ '/cloud-files/Archive.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
+      			{% elsif item.type == "Video" %}
+      				<iron-image src="{{ '/cloud-files/Video.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
+      			{% elsif item.type == "Image" %}
+      				<iron-image src="{{ '/cloud-files/Image.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
+      			{% elsif item.type == "Web" %}
+      				<iron-image src="{{ '/cloud-files/Web.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
+      			{% elsif item.type == "Folder" %}
+      				<iron-image src="{{ '/cloud-files/Folder.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
+      			{% else %}
+      				<iron-image src="{{ '/cloud-files/Other.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
+      			{% endif %}
+      		</div>
+      		<div class="py px container layout-flex layout-vertical black">
+        		<div class="layout-horizontal layout-center pbsm">
+      				<span class="font-title" style="font-size:18px">{{item.title}}</span>&nbsp;<span class="grey">{{item.type}}</span>
+        		</div>
+      			<div class="font-caption grey" style="font-size: 13px;">
+      				{{item.containerType}} • {{item.containerTitle}} • Last opened <at-carbon-moment datetime="{{item.date}}" format="MMM D"></at-carbon-moment>
+      			</div>
+      		</div>
+      	</div>
+      </div>
+      {% endfor %}
+      {% endif %}
+
+      <style>  
+        .cloud-files-icon {
+        	width: 32px;
+        	height: 32px;
+      	}
+      </style>
+    modelRoot: state.model
+  footer8:
+    type: element
+    xtype: at-carbon-card-footer
+    expandable: !!bool true
+    hide: !!bool true
+    modelBind: 'hide: !showList || !linkLabel, expandable: items.length > 3, href: link, label: linkLabel'
+$meta:
+  cardId: 42
+  preview-data: |-
+    {
+      "_action": "firstpage",
+      "_page": 1,
+      "_pageSize": 5,
+      "items": [
+        {
+          "id": "AaxdUSed9sdOmY-xKl3eDYJy6kffZ7qBSLheXdgQPfLAPty_xiyOck6VDc3FEwBQXlFi6b9tAjxMleBSWAEvlobgPna8DgWVRJeUly9b9XqTAA",
+          "title": "Market Research Report",
+          "description": "Market Research Report",
+          "type": "Word",
+          "link": "https://toastergroup-my.sharepoint.com/personal/victor_toastergroup_onmicrosoft_com/_layouts/15/Doc.aspx?sourcedoc=%7BBFE96251-026D-4C3C-95E0-5258012F9686%7D&file=Market%20Research%20Report.docx&action=default&mobileredirect=true&DefaultItemOpen=1",
+          "preview": "https://toastergroup-my.sharepoint.com/_api/v2.0/drives/b!rF1RJ532x06Zj7EqXd4NgnLqR99nuoFIuF5d2BA98sA-3L_GLI5yTpUNzcUTAFBe/items/01LGPSDF2RMLU363ICHRGJLYCSLAAS7FUG/thumbnails/0/small/thumbnailContent",
+          "containerTitle": "Victor Chandler",
+          "containerLink": "https://toastergroup-my.sharepoint.com/personal/victor_toastergroup_onmicrosoft_com/Documents/Forms/All.aspx",
+          "containerType": "OneDriveBusiness",
+          "nowIcon": "now:word",
+          "date": "2019-08-08T14:26:05.000Z",
+          "raw": {
+            "id": "AaxdUSed9sdOmY-xKl3eDYJy6kffZ7qBSLheXdgQPfLAPty_xiyOck6VDc3FEwBQXlFi6b9tAjxMleBSWAEvlobgPna8DgWVRJeUly9b9XqTAA",
+            "lastUsed": {
+              "lastAccessedDateTime": "2019-08-08T14:26:05Z",
+              "lastModifiedDateTime": "2019-08-08T14:26:05Z"
+            },
+            "resourceVisualization": {
+              "title": "Market Research Report",
+              "type": "Word",
+              "mediaType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+              "previewImageUrl": "https://toastergroup-my.sharepoint.com/_api/v2.0/drives/b!rF1RJ532x06Zj7EqXd4NgnLqR99nuoFIuF5d2BA98sA-3L_GLI5yTpUNzcUTAFBe/items/01LGPSDF2RMLU363ICHRGJLYCSLAAS7FUG/thumbnails/0/small/thumbnailContent",
+              "previewText": "Market Research Report",
+              "containerWebUrl": "https://toastergroup-my.sharepoint.com/personal/victor_toastergroup_onmicrosoft_com/Documents/Forms/All.aspx",
+              "containerDisplayName": "Victor Chandler",
+              "containerType": "OneDriveBusiness"
+            },
+            "resourceReference": {
+              "webUrl": "https://toastergroup-my.sharepoint.com/personal/victor_toastergroup_onmicrosoft_com/_layouts/15/Doc.aspx?sourcedoc=%7BBFE96251-026D-4C3C-95E0-5258012F9686%7D&file=Market%20Research%20Report.docx&action=default&mobileredirect=true&DefaultItemOpen=1",
+              "id": "drives/b!rF1RJ532x06Zj7EqXd4NgnLqR99nuoFIuF5d2BA98sA-3L_GLI5yTpUNzcUTAFBe/items/01LGPSDF2RMLU363ICHRGJLYCSLAAS7FUG",
+              "type": "microsoft.graph.driveItem"
+            }
+          }
+        },
+        {
+          "id": "AaxdUSed9sdOmY-xKl3eDYJy6kffZ7qBSLheXdgQPfLAPty_xiyOck6VDc3FEwBQXkZF1tkQLkdEpBZee3wduZ7gPna8DgWVRJeUly9b9XqTAA",
+          "title": "Q4 Budget",
+          "description": "",
+          "type": "Excel",
+          "link": "https://toastergroup-my.sharepoint.com/personal/victor_toastergroup_onmicrosoft_com/_layouts/15/Doc.aspx?sourcedoc=%7BD9D64546-2E10-4447-A416-5E7B7C1DB99E%7D&file=Q4%20Budget.xlsx&action=default&mobileredirect=true&DefaultItemOpen=1",
+          "preview": "https://toastergroup-my.sharepoint.com/_api/v2.0/drives/b!rF1RJ532x06Zj7EqXd4NgnLqR99nuoFIuF5d2BA98sA-3L_GLI5yTpUNzcUTAFBe/items/01LGPSDF2GIXLNSEBOI5CKIFS6PN6B3OM6/thumbnails/0/small/thumbnailContent",
+          "containerTitle": "Victor Chandler",
+          "containerLink": "https://toastergroup-my.sharepoint.com/personal/victor_toastergroup_onmicrosoft_com/Documents/Forms/All.aspx",
+          "containerType": "OneDriveBusiness",
+          "nowIcon": "now:excel",
+          "date": "2019-08-08T14:26:03.000Z",
+          "raw": {
+            "id": "AaxdUSed9sdOmY-xKl3eDYJy6kffZ7qBSLheXdgQPfLAPty_xiyOck6VDc3FEwBQXkZF1tkQLkdEpBZee3wduZ7gPna8DgWVRJeUly9b9XqTAA",
+            "lastUsed": {
+              "lastAccessedDateTime": "2019-08-08T14:26:03Z",
+              "lastModifiedDateTime": "2019-08-08T14:26:04Z"
+            },
+            "resourceVisualization": {
+              "title": "Q4 Budget",
+              "type": "Excel",
+              "mediaType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+              "previewImageUrl": "https://toastergroup-my.sharepoint.com/_api/v2.0/drives/b!rF1RJ532x06Zj7EqXd4NgnLqR99nuoFIuF5d2BA98sA-3L_GLI5yTpUNzcUTAFBe/items/01LGPSDF2GIXLNSEBOI5CKIFS6PN6B3OM6/thumbnails/0/small/thumbnailContent",
+              "previewText": "",
+              "containerWebUrl": "https://toastergroup-my.sharepoint.com/personal/victor_toastergroup_onmicrosoft_com/Documents/Forms/All.aspx",
+              "containerDisplayName": "Victor Chandler",
+              "containerType": "OneDriveBusiness"
+            },
+            "resourceReference": {
+              "webUrl": "https://toastergroup-my.sharepoint.com/personal/victor_toastergroup_onmicrosoft_com/_layouts/15/Doc.aspx?sourcedoc=%7BD9D64546-2E10-4447-A416-5E7B7C1DB99E%7D&file=Q4%20Budget.xlsx&action=default&mobileredirect=true&DefaultItemOpen=1",
+              "id": "drives/b!rF1RJ532x06Zj7EqXd4NgnLqR99nuoFIuF5d2BA98sA-3L_GLI5yTpUNzcUTAFBe/items/01LGPSDF2GIXLNSEBOI5CKIFS6PN6B3OM6",
+              "type": "microsoft.graph.driveItem"
+            }
+          }
+        },
+        {
+          "id": "AaxdUSed9sdOmY-xKl3eDYJy6kffZ7qBSLheXdgQPfLAPty_xiyOck6VDc3FEwBQXnKs0DW3SMhDgMAjnBVofVjgPna8DgWVRJeUly9b9XqTAA",
+          "title": "API Documentation",
+          "description": "User’s Manual Introduction Music Player Daemon (MPD) is a flexible, powerful, server-side application for playing music. Through plugins and libraries it can play a variety of sound files while being controlled by its network protocol. This document is wo",
+          "type": "Pdf",
+          "link": "https://toastergroup-my.sharepoint.com/personal/victor_toastergroup_onmicrosoft_com/Documents/API Documentation.pdf",
+          "preview": "https://toastergroup-my.sharepoint.com/_api/v2.0/drives/b!rF1RJ532x06Zj7EqXd4NgnLqR99nuoFIuF5d2BA98sA-3L_GLI5yTpUNzcUTAFBe/items/01LGPSDF3SVTIDLN2IZBBYBQBDTQKWQ7KY/thumbnails/0/small/thumbnailContent",
+          "containerTitle": "Victor Chandler",
+          "containerLink": "https://toastergroup-my.sharepoint.com/personal/victor_toastergroup_onmicrosoft_com/Documents/Forms/All.aspx",
+          "containerType": "OneDriveBusiness",
+          "nowIcon": "now:pdf",
+          "date": "2019-08-08T14:26:03.000Z",
+          "raw": {
+            "id": "AaxdUSed9sdOmY-xKl3eDYJy6kffZ7qBSLheXdgQPfLAPty_xiyOck6VDc3FEwBQXnKs0DW3SMhDgMAjnBVofVjgPna8DgWVRJeUly9b9XqTAA",
+            "lastUsed": {
+              "lastAccessedDateTime": "2019-08-08T14:26:03Z",
+              "lastModifiedDateTime": "2019-08-08T14:26:03Z"
+            },
+            "resourceVisualization": {
+              "title": "API Documentation",
+              "type": "Pdf",
+              "mediaType": "application/pdf",
+              "previewImageUrl": "https://toastergroup-my.sharepoint.com/_api/v2.0/drives/b!rF1RJ532x06Zj7EqXd4NgnLqR99nuoFIuF5d2BA98sA-3L_GLI5yTpUNzcUTAFBe/items/01LGPSDF3SVTIDLN2IZBBYBQBDTQKWQ7KY/thumbnails/0/small/thumbnailContent",
+              "previewText": "User’s Manual Introduction Music Player Daemon (MPD) is a flexible, powerful, server-side application for playing music. Through plugins and libraries it can play a variety of sound files while being controlled by its network protocol. This document is wo",
+              "containerWebUrl": "https://toastergroup-my.sharepoint.com/personal/victor_toastergroup_onmicrosoft_com/Documents/Forms/All.aspx",
+              "containerDisplayName": "Victor Chandler",
+              "containerType": "OneDriveBusiness"
+            },
+            "resourceReference": {
+              "webUrl": "https://toastergroup-my.sharepoint.com/personal/victor_toastergroup_onmicrosoft_com/Documents/API Documentation.pdf",
+              "id": "drives/b!rF1RJ532x06Zj7EqXd4NgnLqR99nuoFIuF5d2BA98sA-3L_GLI5yTpUNzcUTAFBe/items/01LGPSDF3SVTIDLN2IZBBYBQBDTQKWQ7KY",
+              "type": "microsoft.graph.driveItem"
+            }
+          }
+        },
+        {
+          "id": "Afs0RmCI0h1Gn1Bpzb_1J1LqWr6vnuwJS7m1-y4Mi2vKPQE-wl-kwky3b9Z6GdxCflDXEIgxzp1BlaXirZgjdWr7NEZgiNIdRp9Qac2_9SdSAQ",
+          "title": "easychair",
+          "description": "Ivan Rasic Test Document for Sharepoint\r\nThe Guide for Writing Word Documents in Microsoft Word for Publication in the EPiC Series\r\nAndrei Voronkov1,2 Masterminded EasyChair and created the first stable version of this document\r\n and Kryštof Hoder1 Create",
+          "type": "Word",
+          "link": "https://toastergroup.sharepoint.com/_layouts/15/Doc.aspx?sourcedoc=%7B8810D750-CE31-419D-95A5-E2AD9823756A%7D&file=easychair.docx&action=default&mobileredirect=true&DefaultItemOpen=1",
+          "preview": "https://toastergroup.sharepoint.com/_api/v2.0/drives/b!-zRGYIjSHUafUGnNv_UnUupavq-e7AlLubX7LgyLa8o9AT7CX6TCTLdv1noZ3EJ-/items/012GMH552Q24IIQMOOTVAZLJPCVWMCG5LK/thumbnails/0/small/thumbnailContent",
+          "containerTitle": "Toaster Group Team Site",
+          "containerLink": "https://toastergroup.sharepoint.com/Shared Documents/Forms/AllItems.aspx",
+          "containerType": "Site",
+          "nowIcon": "now:word",
+          "date": "2019-04-17T11:37:30.000Z",
+          "raw": {
+            "id": "Afs0RmCI0h1Gn1Bpzb_1J1LqWr6vnuwJS7m1-y4Mi2vKPQE-wl-kwky3b9Z6GdxCflDXEIgxzp1BlaXirZgjdWr7NEZgiNIdRp9Qac2_9SdSAQ",
+            "lastUsed": {
+              "lastAccessedDateTime": "2019-04-17T11:37:30Z",
+              "lastModifiedDateTime": "2019-04-16T13:57:08Z"
+            },
+            "resourceVisualization": {
+              "title": "easychair",
+              "type": "Word",
+              "mediaType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+              "previewImageUrl": "https://toastergroup.sharepoint.com/_api/v2.0/drives/b!-zRGYIjSHUafUGnNv_UnUupavq-e7AlLubX7LgyLa8o9AT7CX6TCTLdv1noZ3EJ-/items/012GMH552Q24IIQMOOTVAZLJPCVWMCG5LK/thumbnails/0/small/thumbnailContent",
+              "previewText": "Ivan Rasic Test Document for Sharepoint\r\nThe Guide for Writing Word Documents in Microsoft Word for Publication in the EPiC Series\r\nAndrei Voronkov1,2 Masterminded EasyChair and created the first stable version of this document\r\n and Kryštof Hoder1 Create",
+              "containerWebUrl": "https://toastergroup.sharepoint.com/Shared Documents/Forms/AllItems.aspx",
+              "containerDisplayName": "Toaster Group Team Site",
+              "containerType": "Site"
+            },
+            "resourceReference": {
+              "webUrl": "https://toastergroup.sharepoint.com/_layouts/15/Doc.aspx?sourcedoc=%7B8810D750-CE31-419D-95A5-E2AD9823756A%7D&file=easychair.docx&action=default&mobileredirect=true&DefaultItemOpen=1",
+              "id": "drives/b!-zRGYIjSHUafUGnNv_UnUupavq-e7AlLubX7LgyLa8o9AT7CX6TCTLdv1noZ3EJ-/items/012GMH552Q24IIQMOOTVAZLJPCVWMCG5LK",
+              "type": "microsoft.graph.driveItem"
+            }
+          }
+        }
+      ],
+      "title": "Recent Files",
+      "link": "https://toastergroup-my.sharepoint.com",
+      "linkLabel": "Go to OneDrive",
+      "_settings": {}
+    }
+  preview-mode: live
+  preview-container: event
+  search-term: 
+  service-url: 
+  xclass: 
+  xstyle: 
+  code: |-
+    action.initialize = function(evt) {
+      evt.model.showList = false;
+    }
+
+    action.showList = function(evt) {
+      evt.model.showList = true;
+    }
+
+    action.select = function(evt) {
+      var win = window.open(evt.args.href, '_blank');
+      win.focus();
+    }
