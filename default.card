@@ -58,45 +58,45 @@ properties:
     xtype: at-core-view
     view: |-
       {% if showList %}
-      {% for item in items | limit:6 %}
-      <div class="container action {% if forloop.index > 3 %}expanded-only{% endif %}" href="{{item.link}}" at-click-action="select" style="cursor:pointer;">
-      	<div class="container layout-horizontal layout-center background-white">
-      		<div class="container layout-center ml pl prsm pysm">
-      			{% if item.type == "PowerPoint" %}
-      				<iron-image src="{{ '/cloud-files/PowerPoint.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
-            {% elsif item.type == "Word" %}
-      				<iron-image src="{{ '/cloud-files/Word.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
-      			{% elsif item.type == "Excel" %}
-      				<iron-image src="{{ '/cloud-files/Excel.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
-      			{% elsif item.type == "Pdf" %}
-      				<iron-image src="{{ '/cloud-files/Pdf.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
-      			{% elsif item.type == "OneNote" or item.type == "OneNotePage" %}
-      				<iron-image src="{{ '/cloud-files/OneNote.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
-      			{% elsif item.type == "Archive" %}
-      				<iron-image src="{{ '/cloud-files/Archive.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
-      			{% elsif item.type == "Video" %}
-      				<iron-image src="{{ '/cloud-files/Video.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
-      			{% elsif item.type == "Image" %}
-      				<iron-image src="{{ '/cloud-files/Image.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
-      			{% elsif item.type == "Web" %}
-      				<iron-image src="{{ '/cloud-files/Web.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
-      			{% elsif item.type == "Folder" %}
-      				<iron-image src="{{ '/cloud-files/Folder.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
-      			{% else %}
-      				<iron-image src="{{ '/cloud-files/Other.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
-      			{% endif %}
-      		</div>
-      		<div class="py px container layout-flex layout-vertical black">
-        		<div class="layout-horizontal layout-center pbsm">
-      				<span class="font-title" style="font-size:18px">{{item.title}}</span>&nbsp;<span class="grey">{{item.type}}</span>
-        		</div>
-      			<div class="font-caption grey" style="font-size: 13px;">
-      				{{item.containerType}} • {{item.containerTitle}} • Last opened <at-carbon-moment datetime="{{item.date}}" format="MMM D"></at-carbon-moment>
-      			</div>
-      		</div>
-      	</div>
-      </div>
-      {% endfor %}
+        {% for item in items | limit:6 %}
+        <div class="container action {% if forloop.index > 3 %}expanded-only{% endif %}" href="{{item.link}}" at-click-action="select" style="cursor:pointer;">
+          <div class="container layout-horizontal layout-center background-white">
+            <div class="container layout-center ml pl prsm pysm">
+              {% if item.type == "PowerPoint" %}
+                <iron-image src="{{ '/cloud-files/PowerPoint.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
+              {% elsif item.type == "Word" %}
+                <iron-image src="{{ '/cloud-files/Word.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
+              {% elsif item.type == "Excel" %}
+                <iron-image src="{{ '/cloud-files/Excel.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
+              {% elsif item.type == "Pdf" %}
+                <iron-image src="{{ '/cloud-files/Pdf.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
+              {% elsif item.type == "OneNote" or item.type == "OneNotePage" %}
+                <iron-image src="{{ '/cloud-files/OneNote.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
+              {% elsif item.type == "Archive" %}
+                <iron-image src="{{ '/cloud-files/Archive.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
+              {% elsif item.type == "Video" %}
+                <iron-image src="{{ '/cloud-files/Video.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
+              {% elsif item.type == "Image" %}
+                <iron-image src="{{ '/cloud-files/Image.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
+              {% elsif item.type == "Web" %}
+                <iron-image src="{{ '/cloud-files/Link.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
+              {% elsif item.type == "Folder" %}
+                <iron-image src="{{ '/cloud-files/Folder.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
+              {% else %}
+                <iron-image src="{{ '/cloud-files/Other.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
+              {% endif %}
+            </div>
+            <div class="py px container layout-flex layout-vertical black">
+              <div class="layout-horizontal layout-center pbsm">
+                <span class="font-title" style="font-size:18px">{{item.title}}</span>&nbsp;<span class="grey">{{item.type}}</span>
+              </div>
+              <div class="font-caption grey" style="font-size: 13px;">
+                {% if item.containerType %}{{item.containerType}} • {% endif %}{{item.containerTitle}}{% if item.date %} • Last opened <at-carbon-moment datetime="{{item.date}}" from-now ago format="MMM D"></at-carbon-moment>{% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
       {% endif %}
 
       <style>  
