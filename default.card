@@ -11,53 +11,16 @@ properties:
     actionListeners:
       - _start
     modelBind: label:title
-  view3:
-    type: element
-    title: Liquid View 3
-    xtype: at-core-view
-    actionListeners:
-      - _all
-    modelRoot: state.model
-    view: |-
-      {% unless showList == true %} 
-        <div class="layout-vertical layout-center-center">
-          {% if items.length > 0 %}
-            <div class="cloud-files-circle background-{{color | default:'blue'}}">
-              <div class="font-headline" style="text-align: center; height: 52px; line-height: 50px;">
-                {% if items.length > 99 %}
-                  99+
-                {% else %}
-                  {{items.length}}
-                {% endif %}
-              </div>
-            </div>
-            <div class="p font-headline grey">{{ title }}</div>
-            <div class="pb ptsm">
-              <at-carbon-button class="background-{{color | default:'blue'}}" button-type="contained" button-color="{{color | default:'blue'}}" label="View" at-click-action="showList"></at-carbon-button>
-            </div>
-          {% endif %}
-          {% if items.length == 0 %}          
-            <div class="p layout-self-stretch font-title grey" style="text-align: center;">
-              No {{title}}
-            </div>
-          {% endif %}
-        </div>
-      {% endunless %}
-
-      <style>
-      .cloud-files-circle {
-        height: 52px;
-        width: 52px;
-        border-radius: 50%;
-      }
-      </style>
-    updateMode: 0
   view7:
     type: element
     title: Liquid View 6
     xtype: at-core-view
     view: |-
-      {% if showList %}
+      {% if items.length == 0 %}          
+      	<div class="p layout-self-stretch font-title grey" style="text-align: center;">
+      		No {{title}}
+      	</div>
+      {% else %}
         {% for item in items %}
         <div class="container list-item {% if forloop.index > 3 %}expanded-only{% endif %}" href="{{item.link}}" at-click-action="select" style="cursor:pointer;">
           <div class="container layout-horizontal layout-center">
@@ -110,7 +73,7 @@ properties:
     type: element
     xtype: at-carbon-card-footer
     expandable: !!bool true
-    modelBind: 'hide: !showList, expandable: items.length > 3, href: link, label: linkLabel'
+    modelBind: 'hide: items.length == 0, expandable: items.length > 3, href: link, label: linkLabel'
 $meta:
   cardId: 42
   preview-data: |-
