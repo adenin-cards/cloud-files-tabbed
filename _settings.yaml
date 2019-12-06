@@ -18,10 +18,10 @@ CommonPart:
   VersionModifiedUtc: 2019-08-08T10:06:31.0000000
 ServicePart:
   ConnectorTypeName: ScriptConnector
-  ConnectorTypeId: !!int 19
+  ConnectorTypeId: !!int 9
   ConnectorName: ms-graph
-  ServiceName: documents-used
-  Url: ~/api/adenin.GateKeeper.Connector/ms-graph/documents-used
+  ServiceName: documents-shared
+  Url: ~/api/adenin.GateKeeper.Connector/ms-graph/documents-shared
   ServiceParameters: '{}'
 SearchContextPart:
   Query: null

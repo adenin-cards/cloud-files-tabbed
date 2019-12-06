@@ -10,108 +10,99 @@ properties:
     xclass: 
     actionListeners:
       - _start
-    modelBind: label:title
-  view3:
-    type: element
-    title: Liquid View 3
-    xtype: at-core-view
-    actionListeners:
-      - _all
-    modelRoot: state.model
-    view: |-
-      {% unless showList == true %} 
-        <div class="layout-vertical layout-center-center">
-          {% if items.length > 0 %}
-            <div class="circle background-{{color | default:'blue'}}">
-              <div class="font-headline" style="text-align: center; height: 52px; line-height: 50px;">
-                {% if items.length > 99 %}
-                  99+
-                {% else %}
-                  {{items.length}}
-                {% endif %}
-              </div>
-            </div>
-            <div class="p font-headline grey">Recent Files</div>
-            <div class="pb ptsm">
-              <at-carbon-button class="background-{{color | default:'blue'}}" button-type="contained" button-color="{{color | default:'blue'}}" label="View" at-click-action="showList"></at-carbon-button>
-            </div>
-          {% endif %}
-          {% if items.length == 0 %}          
-            <div class="p layout-self-stretch font-title grey" style="text-align: center;">
-              No recent files
-            </div>
-          {% endif %}
-        </div>
-      {% endunless %}
-
-      <style>
-      .circle {
-        height: 52px;
-        width: 52px;
-        border-radius: 50%;
-      }
-      </style>
-    updateMode: 0
+    modelBind: 'label: title'
+    model: 
   view7:
     type: element
     title: Liquid View 6
     xtype: at-core-view
     view: |-
-      {% if showList %}
-      {% for item in items | limit:6 %}
-      <div class="container action {% if forloop.index > 3 %}expanded-only{% endif %}" href="{{item.link}}" at-click-action="select" style="cursor:pointer;">
-      	<div class="container layout-horizontal layout-center background-white">
-      		<div class="container layout-center ml pl prsm pysm">
-      			{% if item.type == "PowerPoint" %}
-      				<iron-image src="{{ '/cloud-files/PowerPoint.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
-            {% elsif item.type == "Word" %}
-      				<iron-image src="{{ '/cloud-files/Word.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
-      			{% elsif item.type == "Excel" %}
-      				<iron-image src="{{ '/cloud-files/Excel.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
-      			{% elsif item.type == "Pdf" %}
-      				<iron-image src="{{ '/cloud-files/Pdf.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
-      			{% elsif item.type == "OneNote" or item.type == "OneNotePage" %}
-      				<iron-image src="{{ '/cloud-files/OneNote.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
-      			{% elsif item.type == "Archive" %}
-      				<iron-image src="{{ '/cloud-files/Archive.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
-      			{% elsif item.type == "Video" %}
-      				<iron-image src="{{ '/cloud-files/Video.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
-      			{% elsif item.type == "Image" %}
-      				<iron-image src="{{ '/cloud-files/Image.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
-      			{% elsif item.type == "Web" %}
-      				<iron-image src="{{ '/cloud-files/Web.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
-      			{% elsif item.type == "Folder" %}
-      				<iron-image src="{{ '/cloud-files/Folder.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
-      			{% else %}
-      				<iron-image src="{{ '/cloud-files/Other.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
-      			{% endif %}
-      		</div>
-      		<div class="py px container layout-flex layout-vertical black">
-        		<div class="layout-horizontal layout-center pbsm">
-      				<span class="font-title" style="font-size:18px">{{item.title}}</span>&nbsp;<span class="grey">{{item.type}}</span>
-        		</div>
-      			<div class="font-caption grey" style="font-size: 13px;">
-      				{{item.containerType}} • {{item.containerTitle}} • Last opened <at-carbon-moment datetime="{{item.date}}" format="MMM D"></at-carbon-moment>
+      {% if items.length == 0 %}
+      	<div class="p layout-self-stretch font-title grey" style="text-align: center;">
+      		No {{title}}
+      	</div>
+      {% else %}
+      	{% for item in items | limit: 6 %}
+      		<div class="container list-item {% if forloop.index > 3 %}expanded-only{% endif %}" href="{{item.link}}" at-click-action="select" style="cursor:pointer;">
+      			<div class="container layout-horizontal layout-center">
+      				<div class="container layout-center ml pl prsm pysm">
+      					{% if item.thumbnail %}
+      						<iron-image src="{{ item.thumbnail }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
+      					{% elsif item.type == "PowerPoint" %}
+      						<iron-image src="{{ '/cloud-files/PowerPoint.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
+      					{% elsif item.type == "Word" %}
+      						<iron-image src="{{ '/cloud-files/Word.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
+      					{% elsif item.type == "Excel" %}
+      						<iron-image src="{{ '/cloud-files/Excel.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
+      					{% elsif item.type == "Pdf" %}
+      						<iron-image src="{{ '/cloud-files/Pdf.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
+      					{% elsif item.type == "OneNote" or item.type == "OneNotePage" %}
+      						<iron-image src="{{ '/cloud-files/OneNote.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
+      					{% elsif item.type == "Archive" %}
+      						<iron-image src="{{ '/cloud-files/Archive.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
+      					{% elsif item.type == "Video" %}
+      						<iron-image src="{{ '/cloud-files/Video.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
+      					{% elsif item.type == "Image" %}
+      						<iron-image src="{{ '/cloud-files/Image.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
+      					{% elsif item.type == "Web" %}
+      						<iron-image src="{{ '/cloud-files/Link.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
+      					{% elsif item.type == "Folder" %}
+      						<iron-image src="{{ '/cloud-files/Folder.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
+      					{% elsif item.type == "GoogleDocument" %}
+      						<iron-image src="{{ '/cloud-files/GoogleDocument.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
+      					{% elsif item.type == "GoogleSpreadsheet" %}
+      						<iron-image src="{{ '/cloud-files/GoogleSpreadsheet.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
+      					{% elsif item.type == "GooglePresentation" %}
+      						<iron-image src="{{ '/cloud-files/GooglePresentation.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
+      					{% else %}
+      						<iron-image src="{{ '/cloud-files/Other.png' | component_url }}" preload sizing="cover" class="cloud-files-icon" ></iron-image>
+      					{% endif %}
+      				</div>
+      				<div class="py px container layout-flex layout-vertical black">
+      					<div class="layout-horizontal layout-center pbsm">
+      						<span class="font-title" style="font-size:18px">{{item.title}}</span>&nbsp;<span class="grey">{{item.type}}</span>
+      					</div>
+      					<div class="font-caption grey" style="font-size: 13px;">
+      						{% if item.containerType %}
+      							<span>{{item.containerType}} • </span>
+      						{% endif %}
+      						{% if item.containerTitle %}
+      							<span>{{item.containerTitle}} • </span>
+      						{% endif %}
+      						{% if item.lastModified %}
+      							<span class="blue">Modified <at-carbon-moment datetime="{{item.lastOpened}}" from-now ago format="MMM D"></at-carbon-moment></span>
+      						{% elsif item.lastOpened %}
+      							<span class="green layout-center"><at-carbon-icon class="cloud-files-subicon" icon="now:recent"></at-carbon-icon> Last opened <at-carbon-moment datetime="{{item.lastOpened}}" from-now ago format="MMM D"></at-carbon-moment></span>
+      						{% elsif item.sharedBy %}
+      							<span class="orange layout-center"><at-carbon-icon class="cloud-files-subicon" icon="now:users"></at-carbon-icon> Shared by {{ item.sharedBy }}</span>
+      						{% endif %}
+      					</div>
+      				</div>
       			</div>
       		</div>
-      	</div>
-      </div>
-      {% endfor %}
+      	{% endfor %}
       {% endif %}
 
       <style>  
-        .cloud-files-icon {
-        	width: 32px;
-        	height: 32px;
+      	.cloud-files-icon {
+      		width: 32px;
+      		height: 32px;
+      	}
+
+      	.cloud-files-subicon {
+      		width: 20px;
+      		height: 20px;
       	}
       </style>
     modelRoot: state.model
+    model: 
+    value: 
   footer8:
     type: element
     xtype: at-carbon-card-footer
     expandable: !!bool true
-    hide: !!bool true
-    modelBind: 'hide: !showList || !linkLabel, expandable: items.length > 3, href: link, label: linkLabel'
+    modelBind: 'expandable: items.length > 3, href: link, label: linkLabel'
+    model: 
 $meta:
   cardId: 42
   preview-data: |-
