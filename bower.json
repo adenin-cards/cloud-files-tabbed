@@ -1,6 +1,6 @@
 {
-  "name": "cloud-files",
-  "version": "0.0.1.59",
+  "name": "cloud-files-v3",
+  "version": "0.0.1.151",
   "private": true,
   "dependencies": {
     "polymer": "Polymer/polymer#master"

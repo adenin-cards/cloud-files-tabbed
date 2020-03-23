@@ -1,0 +1,85 @@
+$type: card
+properties:
+  view1:
+    type: element
+    title: View
+    xtype: at-core-view
+    view: |
+      {% if _isInitial %}{% else %}<div class="bb mx"></div>{% endif %}
+      <div class="container list-item" href="{{link}}" at-click-action="select" style="cursor:pointer;">
+      	<div class="container layout-horizontal layout-center">
+      		<div class="container layout-center ml pl prsm pysm">
+      			{% if thumbnail %}
+      				<iron-image src="{{ thumbnail }}" preload sizing="cover" style="width:32px;height:32px"></iron-image>
+      			{% elsif type == "PowerPoint" %}
+      				<iron-image src="{{ '/cloud-files-v3/PowerPoint.png' | component_url }}" preload sizing="cover" style="width:32px;height:32px"></iron-image>
+      			{% elsif type == "Word" %}
+      				<iron-image src="{{ '/cloud-files-v3/Word.png' | component_url }}" preload sizing="cover" style="width:32px;height:32px"></iron-image>
+      			{% elsif type == "Excel" %}
+      				<iron-image src="{{ '/cloud-files-v3/Excel.png' | component_url }}" preload sizing="cover" style="width:32px;height:32px"></iron-image>
+      			{% elsif type == "Pdf" %}
+      				<iron-image src="{{ '/cloud-files-v3/Pdf.png' | component_url }}" preload sizing="cover" style="width:32px;height:32px"></iron-image>
+      			{% elsif type == "OneNote" or type == "OneNotePage" %}
+      				<iron-image src="{{ '/cloud-files-v3/OneNote.png' | component_url }}" preload sizing="cover" style="width:32px;height:32px"></iron-image>
+      			{% elsif type == "Archive" %}
+      				<iron-image src="{{ '/cloud-files-v3/Archive.png' | component_url }}" preload sizing="cover" style="width:32px;height:32px"></iron-image>
+      			{% elsif type == "Video" %}
+      				<iron-image src="{{ '/cloud-files-v3/Video.png' | component_url }}" preload sizing="cover" style="width:32px;height:32px"></iron-image>
+      			{% elsif type == "Image" %}
+      				<iron-image src="{{ '/cloud-files-v3/Image.png' | component_url }}" preload sizing="cover" style="width:32px;height:32px"></iron-image>
+      			{% elsif type == "Web" %}
+      				<iron-image src="{{ '/cloud-files-v3/Link.png' | component_url }}" preload sizing="cover" style="width:32px;height:32px"></iron-image>
+      			{% elsif type == "Folder" %}
+      				<iron-image src="{{ '/cloud-files-v3/Folder.png' | component_url }}" preload sizing="cover" style="width:32px;height:32px"></iron-image>
+      			{% else %}
+      				<iron-image src="{{ '/cloud-files-v3/Other.png' | component_url }}" preload sizing="cover" style="width:32px;height:32px"></iron-image>
+      			{% endif %}
+      		</div>
+      		<div class="py pxsm container layout-flex layout-vertical black">
+      			<div class="layout-horizontal layout-center layout-justified">
+      				<at-carbon-clamp lines="1" class="font-body1" style="max-width:200px">{{title}}</at-carbon-clamp><span class="font-caption grey plsm pr">{{type}}</span>
+      			</div>
+      			<div class="font-caption grey" style="font-size: 13px;">
+      				{% if containerType %}
+      					<span>{{containerType}}</span>
+      					{% if containerTitle %} • {% endif %}
+      				{% endif %}
+      				{% if containerTitle %}
+      					<span>{{containerTitle}}</span>
+      				{% endif %}
+      			</div>
+      			{% if lastModified or lastOpened or sharedBy %}
+      				<div class="font-caption grey ptsm" style="font-size: 13px;">
+      					{% if lastModified %}
+      						<span class="blue">Modified <at-carbon-moment datetime="{{lastOpened}}" from-now ago format="MMM D"></at-carbon-moment></span>
+      					{% elsif lastOpened %}
+      						<span class="green layout-center"><at-carbon-icon style="width:20px;height:20px" icon="now:recent"></at-carbon-icon> Last opened <at-carbon-moment datetime="{{lastOpened}}" from-now ago format="MMM D"></at-carbon-moment></span>
+      					{% elsif sharedBy %}
+      						<span class="orange layout-center"><at-carbon-icon style="width:20px;height:20px" icon="now:users"></at-carbon-icon> Shared by {{ sharedBy }}</span>
+      					{% endif %}
+      				</div>
+      			{% endif %}
+      		</div>
+      	</div>
+      </div>
+    model: 
+    value: 
+    modelRoot: state.model
+$meta:
+  cardId: !!int 17
+  preview-mode: static
+  preview-container: item
+  search-term: 
+  service-url: 
+  preview-data: |-
+    {
+      "title": "abc",
+      "type": "other"
+    }
+  xclass: 
+  xstyle: 
+  code: |-
+    action.initialize = function(evt) {
+      //debugger;
+    }
+rules: []

@@ -1,27 +1,36 @@
 contentType: Card
 title: Cloud Files
-name: cloud-files
-CollectionModeField: null
-MaxItemsField: null
-PriorityField: null
+name: cloud-files-v3
+CollectionModeField:
+  CollectionMode: 0
+MaxItemsField:
+  MaxItems: 3
+PriorityField:
+  Priority: 5
 StreamSource: null
-CardComponent: cloud-files/cloud-files-card
-StoreMetadataField: null
+CardComponent: cloud-files-v3/cloud-files-v3-card
+StoreMetadataField:
+  description: 
+  logourl: 
+  storehide: !!bool false
+  disableWorkplace: !!bool false
+  promotion: !!bool false
+  disableBriefing: !!bool true
 CommonPart:
   Owner: !!int 2
   Container: null
-  CreatedUtc: 2019-08-08T10:06:31.9775099Z
-  PublishedUtc: 2019-08-08T10:06:32.0085100Z
-  ModifiedUtc: 2019-08-08T10:06:31.9775099Z
-  VersionCreatedUtc: 2019-08-08T10:06:31.0000000
-  VersionPublishedUtc: 2019-08-08T10:06:32.0000000
-  VersionModifiedUtc: 2019-08-08T10:06:31.0000000
+  CreatedUtc: 2020-03-17T10:19:31.4406019Z
+  PublishedUtc: 2020-03-17T10:25:58.0632880Z
+  ModifiedUtc: 2020-03-17T10:25:57.9883266Z
+  VersionCreatedUtc: 2020-03-17T10:25:57.0000000
+  VersionPublishedUtc: 2020-03-17T10:25:58.0000000
+  VersionModifiedUtc: 2020-03-17T10:25:57.0000000
 ServicePart:
   ConnectorTypeName: ScriptConnector
-  ConnectorTypeId: !!int 9
+  ConnectorTypeId: !!int 15
   ConnectorName: ms-graph
-  ServiceName: documents-shared
-  Url: ~/api/adenin.GateKeeper.Connector/ms-graph/documents-shared
+  ServiceName: documents-aggregated
+  Url: ~/api/adenin.GateKeeper.Connector/ms-graph/documents-aggregated
   ServiceParameters: '{}'
 SearchContextPart:
   Query: null
