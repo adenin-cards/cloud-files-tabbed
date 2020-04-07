@@ -51,7 +51,7 @@ properties:
       			{% if lastModified or lastOpened or sharedBy %}
       				<div class="font-caption grey ptsm" style="font-size: 13px;">
       					{% if lastModified %}
-      						<span class="blue">Modified <at-carbon-moment datetime="{{lastOpened}}" from-now ago format="MMM D"></at-carbon-moment></span>
+      						<span class="blue">Modified <at-carbon-moment datetime="{{lastModified}}" from-now ago format="MMM D"></at-carbon-moment></span>
       					{% elsif lastOpened %}
       						<span class="green layout-center"><at-carbon-icon style="width:20px;height:20px" icon="now:recent"></at-carbon-icon> Last opened <at-carbon-moment datetime="{{lastOpened}}" from-now ago format="MMM D"></at-carbon-moment></span>
       					{% elsif sharedBy %}
