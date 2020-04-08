@@ -12,37 +12,37 @@ properties:
       			{% if thumbnail %}
       				<iron-image src="{{ thumbnail }}" preload sizing="cover" style="width:32px;height:32px"></iron-image>
       			{% elsif type == "PowerPoint" %}
-      				<iron-image src="{{ '/cloud-files-v3/PowerPoint.png' | component_url }}" preload sizing="cover" style="width:32px;height:32px"></iron-image>
+      				<iron-image src="{{ '/cloud-files-tabbed/PowerPoint.png' | component_url }}" preload sizing="cover" style="width:32px;height:32px"></iron-image>
       			{% elsif type == "Word" %}
-      				<iron-image src="{{ '/cloud-files-v3/Word.png' | component_url }}" preload sizing="cover" style="width:32px;height:32px"></iron-image>
+      				<iron-image src="{{ '/cloud-files-tabbed/Word.png' | component_url }}" preload sizing="cover" style="width:32px;height:32px"></iron-image>
       			{% elsif type == "Excel" %}
-      				<iron-image src="{{ '/cloud-files-v3/Excel.png' | component_url }}" preload sizing="cover" style="width:32px;height:32px"></iron-image>
+      				<iron-image src="{{ '/cloud-files-tabbed/Excel.png' | component_url }}" preload sizing="cover" style="width:32px;height:32px"></iron-image>
       			{% elsif type == "Pdf" %}
-      				<iron-image src="{{ '/cloud-files-v3/Pdf.png' | component_url }}" preload sizing="cover" style="width:32px;height:32px"></iron-image>
+      				<iron-image src="{{ '/cloud-files-tabbed/Pdf.png' | component_url }}" preload sizing="cover" style="width:32px;height:32px"></iron-image>
       			{% elsif type == "OneNote" or type == "OneNotePage" %}
-      				<iron-image src="{{ '/cloud-files-v3/OneNote.png' | component_url }}" preload sizing="cover" style="width:32px;height:32px"></iron-image>
+      				<iron-image src="{{ '/cloud-files-tabbed/OneNote.png' | component_url }}" preload sizing="cover" style="width:32px;height:32px"></iron-image>
       			{% elsif type == "Archive" %}
-      				<iron-image src="{{ '/cloud-files-v3/Archive.png' | component_url }}" preload sizing="cover" style="width:32px;height:32px"></iron-image>
+      				<iron-image src="{{ '/cloud-files-tabbed/Archive.png' | component_url }}" preload sizing="cover" style="width:32px;height:32px"></iron-image>
       			{% elsif type == "Video" %}
-      				<iron-image src="{{ '/cloud-files-v3/Video.png' | component_url }}" preload sizing="cover" style="width:32px;height:32px"></iron-image>
+      				<iron-image src="{{ '/cloud-files-tabbed/Video.png' | component_url }}" preload sizing="cover" style="width:32px;height:32px"></iron-image>
       			{% elsif type == "Image" %}
-      				<iron-image src="{{ '/cloud-files-v3/Image.png' | component_url }}" preload sizing="cover" style="width:32px;height:32px"></iron-image>
+      				<iron-image src="{{ '/cloud-files-tabbed/Image.png' | component_url }}" preload sizing="cover" style="width:32px;height:32px"></iron-image>
       			{% elsif type == "Web" %}
-      				<iron-image src="{{ '/cloud-files-v3/Link.png' | component_url }}" preload sizing="cover" style="width:32px;height:32px"></iron-image>
+      				<iron-image src="{{ '/cloud-files-tabbed/Link.png' | component_url }}" preload sizing="cover" style="width:32px;height:32px"></iron-image>
       			{% elsif type == "Folder" %}
-      				<iron-image src="{{ '/cloud-files-v3/Folder.png' | component_url }}" preload sizing="cover" style="width:32px;height:32px"></iron-image>
+      				<iron-image src="{{ '/cloud-files-tabbed/Folder.png' | component_url }}" preload sizing="cover" style="width:32px;height:32px"></iron-image>
       			{% else %}
-      				<iron-image src="{{ '/cloud-files-v3/Other.png' | component_url }}" preload sizing="cover" style="width:32px;height:32px"></iron-image>
+      				<iron-image src="{{ '/cloud-files-tabbed/Other.png' | component_url }}" preload sizing="cover" style="width:32px;height:32px"></iron-image>
       			{% endif %}
       		</div>
       		<div class="py pxsm container layout-flex layout-vertical black">
       			<div class="layout-horizontal layout-center layout-justified">
       				<at-carbon-clamp lines="1" class="font-body1" style="max-width:200px">{{title}}</at-carbon-clamp><span class="font-caption grey plsm pr">{{type}}</span>
       			</div>
-      			<div class="font-caption grey" style="font-size: 13px;">
+      			<div class="layout-horizontal layout-center font-caption grey" style="font-size: 13px;">
       				{% if containerType %}
       					<span>{{containerType}}</span>
-      					{% if containerTitle %} • {% endif %}
+      					{% if containerTitle %}<at-carbon-icon icon="now:circle-filled" style="width:4px;height:4px;margin-left:6px;margin-right:6px"></at-carbon-icon>{% endif %}
       				{% endif %}
       				{% if containerTitle %}
       					<span>{{containerTitle}}</span>
@@ -66,7 +66,7 @@ properties:
     value: 
     modelRoot: state.model
 $meta:
-  cardId: !!int 17
+  cardId: 22
   preview-mode: static
   preview-container: item
   search-term: 

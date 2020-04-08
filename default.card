@@ -46,7 +46,7 @@ properties:
     model: 
     listHeight: 320px
     listHeightExpanded: 320px
-    itemComponent: cloud-files-v3/cloud-files-v3-item-card
+    itemComponent: cloud-files-tabbed/cloud-files-tabbed-item-card
     modelBind: 'hide: items.length == 0 && action == "firstpage"'
   footer8:
     type: element
@@ -54,13 +54,55 @@ properties:
     modelBind: 'href: link, label: linkLabel'
     model: 
 $meta:
-  cardId: !!int 17
+  cardId: 22
   preview-data: |-
     {
       "_action": "firstpage",
       "_page": 1,
       "_pageSize": 10,
       "items": [
+        {
+          "id": "Acwybk3au91LmZr5FhZrnrOGf16sjQgbTZLUZPakr1BLRWv0n-nbhEen3xGTHLduPcrt0_4ybRhAjdjg_qx8pzfMMm5N2rvdS5ma-RYWa56zBA",
+          "title": "test1",
+          "description": "1 2 3 4 5 6 7 ",
+          "type": "Excel",
+          "link": "https://adenin.sharepoint.com/_layouts/15/Doc.aspx?sourcedoc=%7BFED3EDCA-6D32-4018-8DD8-E0FEAC7CA737%7D&file=test1.xlsx&action=default&mobileredirect=true&DefaultItemOpen=1",
+          "containerTitle": "adenin Team Site",
+          "containerLink": "https://adenin.sharepoint.com/Shared Documents/Forms/AllItems.aspx",
+          "containerType": "Site",
+          "lastModified": "2020-04-06T13:44:21Z",
+          "_isInitial": true
+        },
+        {
+          "id": "AYttFp3hYPhBkDmVqXbx1fY4jECXMrGQQZ2j_okxFRzvTJta8Zb8Vkm9HFG6YHnj1eQ8VmAF_0ZAvPreiaSAqCyLbRad4WD4QZA5lal28dX2BA",
+          "title": "at-meeting-create",
+          "description": "bower.json",
+          "type": "Archive",
+          "link": "https://adenin-my.sharepoint.com/personal/henry_amm_adenin_com/Documents/Cisco Transfer/at-meeting-create.zip",
+          "containerTitle": "Henry Amm",
+          "containerLink": "https://adenin-my.sharepoint.com/personal/henry_amm_adenin_com/Documents/Cisco Transfer",
+          "containerType": "OneDriveBusiness"
+        },
+        {
+          "id": "AYttFp3hYPhBkDmVqXbx1fY4jECXMrGQQZ2j_okxFRzvTJta8Zb8Vkm9HFG6YHnj1cuigaIaHrdHhfQhZVME7WeLbRad4WD4QZA5lal28dX2BA",
+          "title": "sharepoint-sites",
+          "description": "bower.json",
+          "type": "Archive",
+          "link": "https://adenin-my.sharepoint.com/personal/henry_amm_adenin_com/Documents/Cisco Transfer/sharepoint-sites.zip",
+          "containerTitle": "Henry Amm",
+          "containerLink": "https://adenin-my.sharepoint.com/personal/henry_amm_adenin_com/Documents/Cisco Transfer",
+          "containerType": "OneDriveBusiness"
+        },
+        {
+          "id": "AYttFp3hYPhBkDmVqXbx1fY4jECXMrGQQZ2j_okxFRzvTJta8Zb8Vkm9HFG6YHnj1efqSDKnxa5PnzJVGjlis1OLbRad4WD4QZA5lal28dX2BA",
+          "title": "cloud-files-v3_20200318",
+          "description": "Archive.png",
+          "type": "Archive",
+          "link": "https://adenin-my.sharepoint.com/personal/henry_amm_adenin_com/Documents/Cisco Transfer/cloud-files-v3_20200318.zip",
+          "containerTitle": "Henry Amm",
+          "containerLink": "https://adenin-my.sharepoint.com/personal/henry_amm_adenin_com/Documents/Cisco Transfer",
+          "containerType": "OneDriveBusiness"
+        },
         {
           "id": "AQN5cF1-LEZJleqpa0kWrfrUTOY68oM8R4hJtZLDVYkMQAxpxO1LmkmXTIcgwxUfbSszYF0KdlJAmuEKRLVvFHwDeXBdfixGSZXqqWtJFq36BA",
           "title": "zensar.postman_collection",
@@ -123,13 +165,16 @@ $meta:
         }
       ],
       "_tab": 0,
-      "thumbnail": "http://localhost/components-1.7.0.1462.ow6beefqbmkkommssgneahmcnes8yar1/custom-theme/default-card-logo.svg",
+      "thumbnail": "http://localhost/components-1.7.0.1464.2t4n5tijntdyvv3pvsvq69qiq3nz8d1l/custom-theme/default-card-logo.svg",
       "title": "Cloud Files",
-      "link": "https://adenin-my.sharepoint.com/personal/oliver_mcnally_adenin_com/Documents/Microsoft Teams Chat Files",
+      "link": "https://adenin.sharepoint.com/Shared Documents/Forms/AllItems.aspx",
       "linkLabel": "Go to OneDrive",
-      "actionable": false,
-      "description": "You have no new cloud files.",
-      "_hash": "898dbed5dbe04bf7cb088351c2484626",
+      "actionable": true,
+      "value": 10,
+      "date": null,
+      "description": "You have 10 new cloud files.",
+      "briefing": "You have 10 new cloud files. The latest is 'test1'",
+      "_hash": "914baafba4a1fe43b232b486ae483c08",
       "_settings": {}
     }
   preview-mode: live
