@@ -1,6 +1,6 @@
 {
   "name": "cloud-files-tabbed",
-  "version": "0.0.1.44",
+  "version": "0.0.1.53",
   "private": true,
   "dependencies": {
     "polymer": "Polymer/polymer#master"

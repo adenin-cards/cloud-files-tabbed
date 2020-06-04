@@ -37,25 +37,16 @@ properties:
       		</div>
       		<div class="py pxsm container layout-flex layout-vertical black">
       			<div class="layout-horizontal layout-center layout-justified">
-      				<at-carbon-clamp lines="1" class="font-body1" style="max-width:200px">{{title}}</at-carbon-clamp><span class="font-caption grey plsm pr">{{type}}</span>
-      			</div>
-      			<div class="layout-horizontal layout-center font-caption grey" style="font-size: 13px;">
-      				{% if containerType %}
-      					<span>{{containerType}}</span>
-      					{% if containerTitle %}<at-carbon-icon icon="now:circle-filled" style="width:4px;height:4px;margin-left:6px;margin-right:6px"></at-carbon-icon>{% endif %}
+      				<at-carbon-clamp lines="1" class="font-body1" style="max-width:200px">{{title}}</at-carbon-clamp>
+      				{% if date %}
+      					<at-carbon-moment class="font-caption grey plsm pr desktop-only" datetime="{{date}}" from-now ago auto-refresh></at-carbon-moment>
       				{% endif %}
-      				{% if containerTitle %}
+      			</div>
+      			{% if containerTitle %}
+      				<div class="layout-horizontal layout-center font-caption grey" style="font-size: 13px;">
       					<span>{{containerTitle}}</span>
-      				{% endif %}
-      			</div>
-      			{% if lastModified or lastOpened or sharedBy %}
-      				<div class="font-caption grey ptsm" style="font-size: 13px;">
-      					{% if lastModified %}
-      						<span class="blue">Modified <at-carbon-moment datetime="{{lastModified}}" from-now ago format="MMM D"></at-carbon-moment></span>
-      					{% elsif lastOpened %}
-      						<span class="green layout-center"><at-carbon-icon style="width:20px;height:20px" icon="now:recent"></at-carbon-icon> Last opened <at-carbon-moment datetime="{{lastOpened}}" from-now ago format="MMM D"></at-carbon-moment></span>
-      					{% elsif sharedBy %}
-      						<span class="orange layout-center"><at-carbon-icon style="width:20px;height:20px" icon="now:users"></at-carbon-icon> Shared by {{ sharedBy }}</span>
+      					{% if date %}
+      						<at-carbon-moment class="mobile-only plsm" datetime="{{date}}" from-now ago auto-refresh></at-carbon-moment>
       					{% endif %}
       				</div>
       			{% endif %}
